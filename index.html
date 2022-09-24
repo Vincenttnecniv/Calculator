@@ -3,6 +3,10 @@
 <head>
     <script src="oef8.js"></script>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         html,
         body {
             height: 100%;
@@ -11,31 +15,88 @@
 
         body {
             margin: 0;
-        }
-
-        .container {
+            position: relative;
+            width: 100%;
             height: 100%;
-            padding: 0;
-            margin: 0;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
         }
 
-        button {
+        .calculator {
+            padding: 0.5rem;
+            position: relative;
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            border: 1px solid black;
+            border-radius: 20px;
+            width: 300px;
+            height: 400px;
+            margin: 0;
+            align-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        #display-array {
+            text-align: left;
+            height: 20%;
+            font-size: 200%;
+            margin: 0 2.5% 0 2.5%;
+            background-color: gray;
+            width: 100% !important;
+            color: white;
+            overflow: scroll;
+        }
+
+
+        #numbers {
+            height: 75%;
+            width: 80%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-content: stretch;
+            justify-content: space-between;
+        }
+
+        #operators {
+            height: 75%;
+            width: 20%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-content: stretch;
+            justify-content: space-between;
+        }
+
+        .number {
             background-color: #4CAF50;
-            /* Green */
-            border: none;
+            border: #4CAF50;
             color: white;
             padding: 15px 10px;
             text-align: center;
             text-decoration: none;
-            font-size: 16px;
-            padding-left: 13.5px;
-            text-align: left;
+            margin: 2px;
+            font-size: 200%;
+            flex-grow: 1;
         }
 
-        #plus {
+        .operator {
+            background-color: purple;
+            border: purple;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            margin: 2px;
+            font-size: 200%;
+            flex-grow: 1;
+        }
+    </style>
+</head>
+
+<!-- #plus {
             background-color: purple;
             width: 40px;
             margin: -64.2px;
@@ -87,59 +148,64 @@
             margin-left: 340px;
             display: block;
             float: left;
-        }
-
-        #one {
-            margin-left: 20px
-        }
-
-        #display-array {
-            text-align: left;
-            height: 60px;
-            margin: 10px 20px;
-            font-size: 30px;
-            background-color: gray;
-            width: 360px;
-            color: white;
-        }
-
-        #clear {
-            margin-left: 20px;
-            background-color: orange;
-            width: 80px;
-            text-align: center;
-            padding-left: -30px;
-            text-align: left;
-        }
-    </style>
-</head>
+        } -->
 
 <body>
+    <!-- <div class="container"> -->
     <h1>Calculator</h1>
-    <div id="display-array"></div>
+    <div class="calculator">
+        <div id="display-array"></div>
+        <div id="numbers">
+            <button class="number" type="text" value="1" onclick="handleButtonClick(this)" id="one"
+                data:buttontype="number">1</button>
+            <button class="number" type="text" value="2" onclick="handleButtonClick(this)" id="two"
+                data:buttontype="number">2</button>
+            <button class="number" type="text" value="3" onclick="handleButtonClick(this)" id="three"
+                data:buttontype="number">3</button>
+            <button class="number" type="text" value="4" onclick="handleButtonClick(this)" id="four"
+                data:buttontype="number">4</button>
+            <button class="number" type="text" value="5" onclick="handleButtonClick(this)" id="five"
+                data:buttontype="number">5</button>
+            <button class="number" type="text" value="6" onclick="handleButtonClick(this)" id="six"
+                data:buttontype="number">6</button>
+            <button class="number" type="text" value="7" onclick="handleButtonClick(this)" id="seven"
+                data:buttontype="number">7</button>
+            <button class="number" type="text" value="8" onclick="handleButtonClick(this)" id="eight"
+                data:buttontype="number">8</button>
+            <button class="number" type="text" value="9" onclick="handleButtonClick(this)" id="nine"
+                data:buttontype="number">9</button>
+            <button class="number" type="text" value="0" onclick="handleButtonClick(this)" id="zero"
+                data:buttontype="number">0</button>
+            <button class="number" type="text" value="clear" id="clear">clear</button>
+        </div>
+        <div id="operators">
+            <button class="operator" type="button" value="+" onclick="handleButtonClick(this)" id="plus"
+                data:buttontype="operators">+</button>
+            <button class="operator" type="text" value="-" onclick="handleButtonClick(this)" id="minus"
+                data:buttontype="operators">-</button>
+            <button class="operator" type="text" value="/" onclick="handleButtonClick(this)" id="devide"
+                data:buttontype="operators">÷</button>
+            <button class="operator" type="text" value="*" onclick="handleButtonClick(this)" id="times"
+                data:buttontype="operators">x</button>
+            <button class="operator" type="text" value="=" id="do-eq">=</button>
+            <button class="operator" type="text" value="=" id="back">&#x2190;</button>
+        </div>
+    </div>
+    <!-- </div> -->
+
+    <!-- <div id="display-array"></div>
     <form id="clear">
-        <!-- <input type="text" name="calcScreen" id="display-array"> -->
         <button type="text" value="clear" id="clear">clear</button>
-        <!-- <input type="submit" name="submit" value="calculate"> -->
     </form>
     <div data:buttontype="buttons"></div>
     <button type="button" value="+" onclick="handleButtonClick(this)" id="plus" data:buttontype="operators">+</button>
     <button type="text" value="-" onclick="handleButtonClick(this)" id="minus" data:buttontype="operators">-</button>
     <button type="text" value="/" onclick="handleButtonClick(this)" id="devide" data:buttontype="operators">/</button>
     <button type="text" value="*" onclick="handleButtonClick(this)" id="times" data:buttontype="operators">*</button>
-    <button type="text" value="1" onclick="handleButtonClick(this)" id="one" data:buttontype="number">1</button>
-    <button type="text" value="2" onclick="handleButtonClick(this)" id="two" data:buttontype="number">2</button>
-    <button type="text" value="3" onclick="handleButtonClick(this)" id="three" data:buttontype="number">3</button>
-    <button type="text" value="4" onclick="handleButtonClick(this)" id="four" data:buttontype="number">4</button>
-    <button type="text" value="5" onclick="handleButtonClick(this)" id="five" data:buttontype="number">5</button>
-    <button type="text" value="6" onclick="handleButtonClick(this)" id="six" data:buttontype="number">6</button>
-    <button type="text" value="7" onclick="handleButtonClick(this)" id="seven" data:buttontype="number">7</button>
-    <button type="text" value="8" onclick="handleButtonClick(this)" id="eight" data:buttontype="number">8</button>
-    <button type="text" value="9" onclick="handleButtonClick(this)" id="nine" data:buttontype="number">9</button>
-    <button type="text" value="0" onclick="handleButtonClick(this)" id="zero" data:buttontype="number">0</button>
+    
     <button type="text" value="=" id="do-eq">=</button>
-    <button type="text" value="=" id="back">&#x2190;</button>
-    </div>
+    <button type="text" value="=" id="back">&#x2190;</button> 
+    </div> -->
 </body>
 
 </html>

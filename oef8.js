@@ -31,14 +31,13 @@ window.onload = function () {
     goBackOne.addEventListener("click", removeOne);
   }
 
-  let form = document.getElementById("clear");
-  function handleForm(event) {
-    event.preventDefault();
-    console.log("handleForm");
+  let clearButton = document.getElementById("clear");
+  console.log("clearButton", clearButton);
+  function handleClearButton(event) {
     document.getElementById("display-array").textContent = [];
     return (calcDisplayArray = []);
   }
-  form.addEventListener("submit", handleForm);
+  clearButton.addEventListener("click", handleClearButton);
 
   //Do equation
   let equal = document.getElementById("do-eq");
